@@ -1,19 +1,3 @@
-Skip to content
-This repository  
-Search
-Pull requests
-Issues
-Gist
- @diamond-gold
- Unwatch 1
-  Star 0
-  Fork 0 diamond-gold/AreaPVP
- Code  Issues 0  Pull requests 0  Wiki  Pulse  Graphs  Settings
-Branch: master Find file Copy pathAreaPVP/LICENSE
-5deeedc  3 days ago
-@diamond-gold diamond-gold Initial commit
-1 contributor
-RawBlameHistory     675 lines (553 sloc)  34.3 KB
                     GNU GENERAL PUBLIC LICENSE
                        Version 3, 29 June 2007
 
