@@ -11,13 +11,13 @@ will send HI to your group/team
 If you are not in a group/team, it will just be sent as a normal message
 
 #Commands
-Create group: /tc create <group name>
+Create group: /tc create group-Name
 
-Invite players: /tc inv <player>
+Invite players: /tc inv player
 
-Kick member: /tc kick <player>
+Kick member: /tc kick player
 
-Name group: /tc name <new name>
+Name group: /tc name new-Name
 
 Leave group: /tc leave
 
