@@ -1,0 +1,10 @@
+name: TeamChat
+main: TeamChat\Main
+version: 1.0.0
+api: [1.12.0]
+load: POSTWORLD
+author: ace
+description: TeamChat
+commands:
+ tc:
+  description: TeamChat
