@@ -16,6 +16,8 @@ use pocketmine\utils\TextFormat;
 use pocketmine\utils\Config;
 use pocketmine\scheduler\PluginTask;
 use pocketmine\Server;
+use pocketmine\event\entity\EntityDamageEvent;
+use pocketmine\event\entity\EntityDamageByEntityEvent;
 
 class Main extends PluginBase implements Listener{
 
@@ -24,6 +26,7 @@ class Main extends PluginBase implements Listener{
 	public function onEnable(){
 		@mkdir($this->getDataFolder());
 		$this->teams = new Config($this->getDataFolder()."Groups.yml", Config::YAML, array());
+		$this->config = new Config($this->getDataFolder()."config.yml", Config::YAML, array("Friendly-Fire" => true))->getAll();
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 	
@@ -31,6 +34,18 @@ class Main extends PluginBase implements Listener{
 		$name = strtolower($sender->getName());
 		if(count($args) === 0) $args[0] = "help";
 			switch($args[0]){
+				case "c":
+					if(!isset($args[1])){
+						$sender->sendMessage("/tc c <Message>");
+						return true;
+					}
+					$team = $this->inTeam($name);
+					if($team){
+						$this->sendToTeam($team,$sender,implode(' ',array_shift($args)));
+					}else{
+						$sender->sendMessage("You are not in a group");
+					}
+				break;
 				case "create":
 					if(!isset($args[1])){
 						$sender->sendMessage("/tc create <Group Name>");
@@ -221,5 +236,19 @@ class Main extends PluginBase implements Listener{
 		$config[$team][] = $name;
 		$this->teams->setAll($config);
 		$this->teams->save();
+	}
+	
+	public function onEntityDamage(EntityDamageEvent $event){
+		$p = $event->getEntity();
+		if($p instanceof Player && $event instanceof EntityDamageByEntityEvent && $this->config["Friendly-Fire"] === false){
+		    $name = $p->getName();
+			$dmg = $event->getDamager();
+			if($dmg instanceof Player){
+				$dmgn = $dmg->getName();
+				if($this->inTeam($name) === $this->inTeam($dmgn) && $this->inTeam($name) !== false){
+					$event->setCancelled();
+				}
+			}
+		}
 	}
 }

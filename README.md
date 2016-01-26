@@ -10,6 +10,10 @@ will send HI to your group/team
 
 If you are not in a group/team, it will just be sent as a normal message
 
+OR by command:
+
+/tc c message
+
 #Commands
 Create group: /tc create group-Name
 
@@ -22,3 +26,5 @@ Name group: /tc name new-Name
 Leave group: /tc leave
 
 List members: /tc list
+
+Chat with group: /tc c message
