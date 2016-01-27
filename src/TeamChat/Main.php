@@ -26,7 +26,7 @@ class Main extends PluginBase implements Listener{
 	public function onEnable(){
 		@mkdir($this->getDataFolder());
 		$this->teams = new Config($this->getDataFolder()."Groups.yml", Config::YAML, array());
-		$this->config = new Config($this->getDataFolder()."config.yml", Config::YAML, array("Friendly-Fire" => true))->getAll();
+		$this->config = (new Config($this->getDataFolder()."config.yml", Config::YAML, array("Friendly-Fire" => true)))->getAll();
 		$this->getServer()->getPluginManager()->registerEvents($this, $this);
     }
 	
