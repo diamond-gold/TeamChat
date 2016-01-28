@@ -41,7 +41,8 @@ class Main extends PluginBase implements Listener{
 					}
 					$team = $this->inTeam($name);
 					if($team){
-						$this->sendToTeam($team,$sender,implode(' ',array_shift($args)));
+						array_shift($args);
+						$this->sendToTeam($team,$sender,implode(' ',$args));
 					}else{
 						$sender->sendMessage("You are not in a group");
 					}
