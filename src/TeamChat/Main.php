@@ -42,7 +42,7 @@ class Main extends PluginBase implements Listener{
 					$team = $this->inTeam($name);
 					if($team){
 						array_shift($args);
-						$this->sendToTeam($team,$sender,implode(' ',$args));
+						$this->sendToTeam($team,$sender->getName(),implode(' ',$args));
 					}else{
 						$sender->sendMessage("You are not in a group");
 					}
@@ -158,7 +158,7 @@ class Main extends PluginBase implements Listener{
 					if(isset($this->request[$name])){
 						$this->addToTeam($name,$this->request[$name]);
 						$sender->sendMessage("Successfully joined \"".$this->request[$name]."\"");
-						$this->sendToTeam($team,null,$sender->getName()." joined the group");
+						$this->sendToTeam($this->request[$name],null,$sender->getName()." joined the group");
 						unset($this->request[$name]);
 						if(isset($this->task[$name])) $this->task[$name]->cancel();
 					}else{
